@@ -36,3 +36,5 @@ class department {
         },0);
     }
 }
+//Task 3: Create a Manager Class that Inherits from Employee
+
