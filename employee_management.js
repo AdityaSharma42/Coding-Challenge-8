@@ -47,3 +47,24 @@ class Manager extends Employee {
         console.log (`${employeeDetails}).They got a bonus of $${this.bonus}.`);
     }
 }
+// Create departments
+const Accounting = new Department("Accounting");
+const IT = new Department("IT");
+
+// Create employees
+const Phil = new Employee("Phil", 75000, "Auditor", "Accounting");
+const Dan = new Employee("Dan", 80000, "Support Specialist", "IT");
+const Annie = new Manager("Annie", 90000, "Accounting Manager", "Accounting", 25000);
+const Mel = new Manager("Mel", 110000, "IT Manager", "IT", 30000);
+
+// Add employees to departments
+Accounting.addEmployee(Phil);
+Accounting.addEmployee(Annie);
+IT.addEmployee(Dan);
+IT.addEmployee(Mel);
+
+// Calculate total salary for each department
+console.log(`Total salary for accounting: $${Accounting.getDepartmentSalary()}`);
+console.log(`Total salary with bonuses for accounting: $${Accounting.calculateTotalSalaryWithBonus()}`);
+console.log(`Total salary for IT: $${IT.getDepartmentSalary()}`);
+console.log(`Total salary with bonuses for IT: $${IT.calculateTotalSalaryWithBonus()}`);
