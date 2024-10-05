@@ -6,45 +6,45 @@ class Employee {
         this.position = position;
         this.department = department;
     }
-    getDetails(){
+    getDetails(){ //to get the details about the employee
         console.log (`The employee's name is ${this.name}. They work as a ${this.position} in the ${this.department} department, making a salary of $${this.salary}.`);
     
     }
 }
 //Task 2: Create a Department Class AND
 //Task 4: Handle Bonuses for Managers
-class department {
+class Department {
     constructor(name) {
         this.name = name;
         this.employees = [];
     }
-    addEmployee(employee){
-        if (employee instanceof Employee){
-            this.employees.push(employee);
+    addEmployee(employee){//adding an employee to the department
+        if (employee instanceof Employee){//checking if the object employee is an instance of Employee
+            this.employees.push(employee);//adding the employee to the array
         }
     }
-    getDepartmentSalary(){
-        return this.employees.reduce((total,employee)=> total + employee.salary,0);
+    getDepartmentSalary(){//calculating the total salary of employees within the department
+        return this.employees.reduce((total,employee)=> total + employee.salary,0); //adding the salaries of all employees with reduce
     }
-    calculateTotalSalaryWithBonus(){
-        return this.employee.reduce((total,employee)=>{
-            if (employee instanceof Manager){
-                return total+employee.salary + employee.bonus;
+    calculateTotalSalaryWithBonus(){//calculating the total of the salary and bonus for the managers
+        return this.employees.reduce((total,employee)=>{//adding the salaries and bonuses
+            if (employee instanceof Manager){//checking if object employee is an instance of Manager
+                return total+employee.salary + employee.bonus; //adding salary and bonus for managers
 
             }
-            return total+ employee.salary;
+            return total+ employee.salary;//adding only the salary for the other employees
         },0);
     }
 }
 //Task 3: Create a Manager Class that Inherits from Employee
-class Manager extends Employee {
-    constructor(name, salary, department,bonus) {
-        super (name,salary, position, department );
-        this.bonus= bonus;
+class Manager extends Employee { //Manager inherits the properties defined in the Employee class
+    constructor(name, salary, position, department,bonus) {
+        super (name,salary, position, department );//calling the parent class constructor
+        this.bonus= bonus;//assigning a bonus to the manager
     }
-    getDetails(){
-        const employeeDetails = super.getDetails();
-        console.log (`${employeeDetails}).They got a bonus of $${this.bonus}.`);
+    getDetails(){//Overriding the getDetails method to include the bonus in the string
+        super.getDetails();
+        console.log (`They got a bonus of $${this.bonus}.`);
     }
 }
 // Create departments
@@ -62,6 +62,12 @@ Accounting.addEmployee(Phil);
 Accounting.addEmployee(Annie);
 IT.addEmployee(Dan);
 IT.addEmployee(Mel);
+
+//Display details of all employees
+Phil.getDetails();
+Dan.getDetails();
+Annie.getDetails();
+Mel.getDetails();
 
 // Calculate total salary for each department
 console.log(`Total salary for accounting: $${Accounting.getDepartmentSalary()}`);
